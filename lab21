@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+
+class Person
+{
+public:
+
+	int age;
+	string name;
+
+	Person(int person_age, string person_name)
+	{
+		age = person_age;
+		name = person_name;
+	}
+	void set_age(int& age)
+	{
+		this->age = age;
+	}
+	void set_name(string& name)
+	{
+		this->name = name;
+	}
+	int get_age() const
+	{
+		return age;
+	}
+	string get_name() const
+	{
+		return name;
+	}
+};
+
+class Student :public Person
+{
+public:
+	int study_year;
+	void set_year(int& year)
+	{
+		this->study_year = year;
+	}
+	int get_year() const
+	{
+		return study_year;
+	}
+	void inc_year()
+	{
+		study_year++;
+	}
+
+	Student(string name, int age, int year) :Person(age, name)
+	{
+		name = name;
+		age = age;
+		this->study_year = year;
+	}
+};
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+
+	int x, z;
+	string y;
+	Student Erik = Student(y, x, z);
+	cout << "Введите имя человека: ";
+	cin >> y;
+	cout << "Введите возраст человека: ";
+	cin >> x;
+	cout << "Введите время обучения студента: ";
+	cin >> z;
+
+	cout << endl << "Имя студента: " << Erik.get_name() << "\nВозраст студента: " 
+		<< Erik.get_age() << "\nВремя обучения студента: " << Erik.get_year() << endl;
+	Erik.inc_year();
+	cout << "Время обучения после увеличения года обучения: " << Erik.get_year() << endl;
+}
