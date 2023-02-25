@@ -1,0 +1,63 @@
+#include <iostream>
+#include <math.h>
+#define N 4 // Количество неизвестных
+
+using namespace std;
+
+int main()
+{
+	int i, j, k, r; // Переменные для счётчиков
+	float t, d, l, a[N][N + 1]; // Переменные для вычислений
+
+	// Цикл ввода данных в СЛАУ
+	for (i = 0; i < N; i++) {
+		for (j = 0; j < N + 1; j++)
+		{
+			cin >> t;
+			a[i][j] = t;
+		}
+	}
+
+	// Цикл решения СЛАУ
+	for (k = 0; k < N - 1; k++)
+	{
+		d = a[k][k];
+		r = k;
+		for (i = k + 1; i < N; i++)
+			if (fabs(a[i][k]) > fabs(d))
+			{
+				d = a[i][k]; r = i;
+			}
+		if (r != k)
+			for (j = k; j < N + 1; j++)
+			{
+				t = a[r][j]; a[r][j] = a[k][j]; a[k][j] = t;
+			}
+		for (i = k + 1; i < N; i++)
+		{
+			l = a[i][k] / a[k][k];
+			for (j = k + 1; j < N + 1; j++)
+			{
+				a[i][j] = a[i][j] - l * a[k][j];
+			}
+		}
+	}
+
+	// Цикл присваивания переменных в СЛАУ
+	for (k = N - 1; k >= 0; k--)
+	{
+		t = 0;
+		for (j = k + 1; j < N; j++) 
+		{
+			t = t + a[k][j] * a[j][N];
+		}
+		a[k][N] = (a[k][N] - t) / a[k][k];
+	}
+
+	// Цикл результата решения СЛАУ
+	for (i = 0; i < N; i++)
+	{
+		cout << endl << "x" << i + 1 << " = " << a[i][N];
+	}
+	cout << endl;
+}
