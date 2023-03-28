@@ -4,17 +4,16 @@
 #ifndef LAB21_MYLIST_H
 #define LAB21_MYLIST_H
 
-
+template<typename T>
 class MyList {
 private:
-    std::list<int> l;
+    std::list<T> l;
 public:
     MyList(int size);
-    ~MyList();
 
-    int operator[](int index);
-    int operator()();
-    MyList operator+(int element);
+    T operator[](int index);
+    int size();
+    MyList<T> operator+(int element);
 };
 
 

@@ -1,10 +1,11 @@
 #include "MyList.h"
-
-MyList::MyList(int size) {
+template<typename T>
+MyList<T>::MyList(int size) {
     l = std::list<int>(size);
 }
 
-int MyList::operator[](int index) {
+template<typename T>
+T MyList<T>::operator[](int index) {
 
     // достаем итератор на начало
     auto it = l.begin();
@@ -15,19 +16,18 @@ int MyList::operator[](int index) {
 }
 
 // возвращает размер списка
-int MyList::operator()() {
+template<typename T>
+int MyList<T>::size() {
     return l.size();
 }
 
 // добавляет константу ко всем элементам
-MyList MyList::operator+(int element) {
-    for (int n : l) {
+template<typename T>
+MyList<T> MyList<T>::operator+(int element) {
+    for (T n : l) {
         n += element;
     }
 }
 
-MyList::~MyList() {
-
-}
 
 
