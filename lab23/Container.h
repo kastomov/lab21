@@ -2,7 +2,7 @@
 #ifndef LAB21_CONTAINER_H
 #define LAB21_CONTAINER_H
 
-#include <cstring>
+#define NULL 0
 
 struct Node
 {
